@@ -1,6 +1,6 @@
 # Engineering 71
 
-[C# Core](C:\Users\User\github\eng71\Core)
+[C# Core]()
 
 [C# OOP]()
 
