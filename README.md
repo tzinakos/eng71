@@ -1,8 +1,8 @@
 # Engineering 71
 
-[C# Core]()
+[C# Core](# C#-Core)
 
-[C# OOP]()
+[C# OOP](# C#-OOp)
 
 [C# Data]()
 
@@ -11,6 +11,15 @@
 [C# SDET 2]()
 
 # Lessons
+
+## C# OOp
+
+1. Introduction to the 4 pillars of OOP
+2. Classes & Structs
+3. Inheritance
+4. Polymorphism & Interfaces
+5. SOLID Principles
+6. Comparing Objects
 
 ## C# Core
 
