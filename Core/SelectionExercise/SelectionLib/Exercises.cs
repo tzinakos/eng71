@@ -26,19 +26,19 @@ namespace SelectionExercisesLib
             }
             else
             {
-                if (age >= 18 && age <= 59)
+                if (age >= 60)
+                {
+                    ticketType = "OAP";    
+                }
+                else if (age >= 18)
                 {
                     ticketType = "Standard";
                 }
-                else if (age >= 60)
-                {
-                    ticketType = "OAP";
-                }
-                else if (age >= 13 && age <= 17)
+                else if (age >= 13)
                 {
                     ticketType = "Student";
                 }
-                else if (age >= 5 && age <= 12)
+                else if (age >= 5)
                 {
                     ticketType = "Child";
                 }

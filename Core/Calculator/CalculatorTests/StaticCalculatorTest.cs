@@ -94,6 +94,7 @@ namespace CalculatorTests
             int testResult = CalculatorLib.Divide(a, b); // |Arrange , Assert|
             Assert.AreEqual(expected, testResult);       // |-----Assert-----|
 
+            Assert.Throws<System.ArgumentException>(() => CalculatorLib.Divide(3,0));
         }
 
         //Creating a Test for the Calculator.Module Method With Fixed Parameters: (6,6) Result Should Be 0.
