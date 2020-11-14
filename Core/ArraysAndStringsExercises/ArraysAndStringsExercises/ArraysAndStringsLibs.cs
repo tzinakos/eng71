@@ -10,7 +10,7 @@ namespace ArraysAndStringsLib
         public static string Address(int number, string street, string city, string postcode)
         {
             return $"{number} {street}, {city} {postcode}.";
-            throw new NotImplementedException();
+          //  throw new NotImplementedException();
         }
         // returns a string representing a test score, written as percentage to 1 decimal place
         public static string Scorer(int score, int outOf)
@@ -32,11 +32,12 @@ namespace ArraysAndStringsLib
             bool success = double.TryParse(numString, out double result);
             return success? result : -999;
           //return double.TryParse(numString, out double result)? result: -999;
-            throw new NotImplementedException();
+          //  throw new NotImplementedException();
         }
         public static string ManipulateString(string input, int num)
         {
             string result =input.Trim().ToUpper();
+
             for(int i = 0; i < num; i++)
             {
                 result+= i.ToString();
