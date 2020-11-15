@@ -5,7 +5,7 @@ namespace CalculatorTests
 {
     public class StaticCalculatorTest       
     {
-       private int _addResult, _subtractResult, _multiplyResult, _divideResult, _moduleResult;
+       private double _addResult, _subtractResult, _multiplyResult, _divideResult, _moduleResult;
 
         [SetUp]
         public void Setup()
@@ -29,9 +29,9 @@ namespace CalculatorTests
         [TestCase(-4,5,1)]     // |Test Case No. 02.|
         [TestCase(-3,-8,-11)]  // |Test Case No. 03.|
         [TestCase(232,-232,0)] // |Test Case No. 04.|
-        public void IsAddWorkingWithTestCases(int a, int b, int expected) // This Method Will Be Tested 4 Times; One Time Per Test Case.
+        public void IsAddWorkingWithTestCases(double a, double b, double expected) // This Method Will Be Tested 4 Times; One Time Per Test Case.
         {
-            int testResult = CalculatorLib.Add(a, b); // |Arrange , Assert|
+            double testResult = CalculatorLib.Add(a, b); // |Arrange , Assert|
             Assert.AreEqual(expected, testResult);    // |-----Assert-----|
         }
 
@@ -49,9 +49,9 @@ namespace CalculatorTests
         [TestCase(-13,20,-33)]  // |Test Case No. 03.|
         [TestCase(125,25,100)]  // |Test Case No. 04.|
         [TestCase(23,23,0)]     // |Test Case No. 05.|
-        public void IsSubtractWorkingWithTestCases(int a, int b, int expected) // This Method Will Be Tested 5 Times; One Time Per Test Case.
+        public void IsSubtractWorkingWithTestCases(double a, double b, double expected) // This Method Will Be Tested 5 Times; One Time Per Test Case.
         {
-            int testResult = CalculatorLib.Subtract(a,b); // |Arrange , Assert|
+            double testResult = CalculatorLib.Subtract(a,b); // |Arrange , Assert|
             Assert.AreEqual(expected, testResult);        // |-----Assert-----|
 
         }
@@ -69,9 +69,9 @@ namespace CalculatorTests
         [TestCase(6, -7, -42)]     // |Test Case No. 02.|
         [TestCase(-13, 20, -260)]  // |Test Case No. 03.|
         [TestCase(125, 25, 3125)]  // |Test Case No. 04.|
-        public void IsMultiplyWorkingWithTestCases(int a, int b, int expected) // This Method Will Be Tested 4 Times; One Time Per Test Case.
+        public void IsMultiplyWorkingWithTestCases(double a, double b, double expected) // This Method Will Be Tested 4 Times; One Time Per Test Case.
         {
-            int testResult = CalculatorLib.Multiply(a, b); // |Arrange , Assert|
+            double testResult = CalculatorLib.Multiply(a, b); // |Arrange , Assert|
             Assert.AreEqual(expected, testResult);         // |-----Assert-----|
 
         }
@@ -89,9 +89,9 @@ namespace CalculatorTests
         [TestCase(5, 6, 0)]       // |Test Case No. 02.|
         [TestCase(-13, -13, 1)]   // |Test Case No. 03.|
         [TestCase(125, 25, 5)]    // |Test Case No. 04.|
-        public void IsDivideWorkingWithTestCases(int a, int b, int expected) // This Method Will Be Tested 4 Times; One Time Per Test Case.
+        public void IsDivideWorkingWithTestCases(double a, double b, double expected) // This Method Will Be Tested 4 Times; One Time Per Test Case.
         {
-            int testResult = CalculatorLib.Divide(a, b); // |Arrange , Assert|
+            double testResult = CalculatorLib.Divide(a, b); // |Arrange , Assert|
             Assert.AreEqual(expected, testResult);       // |-----Assert-----|
 
             Assert.Throws<System.ArgumentException>(() => CalculatorLib.Divide(3,0));
@@ -110,9 +110,9 @@ namespace CalculatorTests
         [TestCase(5, 6, 5)]       // |Test Case No. 02.|
         [TestCase(-13, -13, 0)]   // |Test Case No. 03.|
         [TestCase(125, 124, 1)]   // |Test Case No. 04.|
-        public void IsModuleWorkingWithTestCases(int a, int b, int expected) // This Method Will Be Tested 4 Times; One Time Per Test Case.
+        public void IsModuleWorkingWithTestCases(double a, double b, double expected) // This Method Will Be Tested 4 Times; One Time Per Test Case.
         {
-            int testResult = CalculatorLib.Module(a, b); // |Arrange , Assert|
+            double testResult = CalculatorLib.Module(a, b); // |Arrange , Assert|
             Assert.AreEqual(expected, testResult);       // |-----Assert-----|
 
         }
