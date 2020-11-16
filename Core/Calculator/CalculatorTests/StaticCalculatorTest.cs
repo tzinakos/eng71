@@ -14,7 +14,7 @@ namespace CalculatorTests
             _subtractResult = CalculatorLib.Subtract(8, 8); // Calls The CalculatorLib.Subtract Method with parameters of (8,8) and assigns the output to the _subtractResult variable.
             _multiplyResult = CalculatorLib.Multiply(9, 2); // Calls The CalculatorLib.Multiply Method with parameters of (9,2) and assigns the output to the _multiplyResult variable.
             _divideResult = CalculatorLib.Divide(8, 2);     // Calls The CalculatorLib.Divide Method with parameters of (8,2) and assigns the output to the _divideResult variable.
-            _moduleResult = CalculatorLib.Module(6, 6);     // Calls The CalculatorLib.Module Method with parameters of (6,6) and assigns the output to the _moduleResult variable.
+           
         }
         // Creating Tests For the CalculatorLib.Add Method With Fixed Parameters: (3,5) Result Should Be 8
         [Test]   // |---Test Begins---|
@@ -110,12 +110,12 @@ namespace CalculatorTests
         [TestCase(5, 6, 5)]       // |Test Case No. 02.|
         [TestCase(-13, -13, 0)]   // |Test Case No. 03.|
         [TestCase(125, 124, 1)]   // |Test Case No. 04.|
-        public void IsModuleWorkingWithTestCases(double a, double b, double expected) // This Method Will Be Tested 4 Times; One Time Per Test Case.
-        {
-            double testResult = CalculatorLib.Module(a, b); // |Arrange , Assert|
-            Assert.AreEqual(expected, testResult);       // |-----Assert-----|
+        //public void IsModuleWorkingWithTestCases(double a, double b, double expected) // This Method Will Be Tested 4 Times; One Time Per Test Case.
+        //{
+        //    double testResult = CalculatorLib.Module(a, b); // |Arrange , Assert|
+        //    Assert.AreEqual(expected, testResult);       // |-----Assert-----|
 
-        }
+        //}
 
     }
 }

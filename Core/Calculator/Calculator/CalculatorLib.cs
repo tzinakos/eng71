@@ -9,6 +9,7 @@ namespace Calculator
 
 
         public static List<double> opperants = new List<double>();
+        public static bool operationIsDone;
         /// <summary>
         /// stores the numbers to an array -- If the array includes two elements calles the addition function and returnes the result to its caller.
         /// </summary>
@@ -39,6 +40,7 @@ namespace Calculator
         /// <returns></returns>
         public static double Add(double x, double y)
         {
+
             return x + y;
         }
 
@@ -107,13 +109,15 @@ namespace Calculator
             string result = "";
             if (opperants.Count == 2) // when the aray contains 2 numbers then we can purform the addition
             {
+                if (opperants[1] != 0) { 
                 result = (Divide((opperants[0]), opperants[1])).ToString();
                 List<double> temp = new List<double>() { opperants[0], opperants[1] }; // creating a temp arrayList to store temporary the values of the addArray.
                 opperants.Clear(); // empties the values from the list
                 opperants.Add(Divide(temp[0], temp[1])); // ads the summary result to the list
                 temp.Clear(); // empty the temporary List
-
-                return result;
+                operationIsDone = true;
+                return "result";
+                }return "01";
             }
             else return "";
         }
@@ -140,9 +144,20 @@ namespace Calculator
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns></returns>
-        public static double Module(double x, double y)
+        public static string Percentage(double x)
         {
-            return x % y;
+            return (x / 100).ToString();
+        }
+
+        public static string SquareRoot(double x)
+        {
+            return (Math.Sqrt(x)).ToString();
+        }
+
+        public static string PowerOfTwo(double x)
+        {
+            return (Math.Pow(x,2)).ToString();
+            
         }
     }
 }
