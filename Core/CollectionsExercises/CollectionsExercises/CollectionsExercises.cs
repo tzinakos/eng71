@@ -9,7 +9,7 @@ namespace CollectionsExercises
         public static string NextInQueue(int num, Queue<string> queue)
         {
             string result = "";
-            int counter = queue.Count;
+
             if (num <= queue.Count)
             {
                 for (int i = 0; i < num; i++)
@@ -91,7 +91,6 @@ namespace CollectionsExercises
                         output += $"[{num}, {occurance[num]}]";
                         printed.Add(num); 
                     }
-                   // occurance.Remove(num);
                 } 
             }
             return output;

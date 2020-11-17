@@ -3,9 +3,9 @@ using Calculator;
 
 namespace CalculatorTests
 {
-    public class StaticCalculatorTest       
+    public class StaticCalculatorTest
     {
-       private double _addResult, _subtractResult, _multiplyResult, _divideResult, _moduleResult;
+        private double _addResult, _subtractResult, _multiplyResult, _divideResult, _moduleResult;
 
         [SetUp]
         public void Setup()
@@ -14,7 +14,7 @@ namespace CalculatorTests
             _subtractResult = CalculatorLib.Subtract(8, 8); // Calls The CalculatorLib.Subtract Method with parameters of (8,8) and assigns the output to the _subtractResult variable.
             _multiplyResult = CalculatorLib.Multiply(9, 2); // Calls The CalculatorLib.Multiply Method with parameters of (9,2) and assigns the output to the _multiplyResult variable.
             _divideResult = CalculatorLib.Divide(8, 2);     // Calls The CalculatorLib.Divide Method with parameters of (8,2) and assigns the output to the _divideResult variable.
-           
+
         }
         // Creating Tests For the CalculatorLib.Add Method With Fixed Parameters: (3,5) Result Should Be 8
         [Test]   // |---Test Begins---|
@@ -25,10 +25,10 @@ namespace CalculatorTests
 
         //Creating a Test for the CalculatorLib.Add Method with 4 Test Cases.
         [Test]                 // |---Test Begins---|
-        [TestCase(4,5,9)]      // |Test Case No. 01.|
-        [TestCase(-4,5,1)]     // |Test Case No. 02.|
-        [TestCase(-3,-8,-11)]  // |Test Case No. 03.|
-        [TestCase(232,-232,0)] // |Test Case No. 04.|
+        [TestCase(4, 5, 9)]      // |Test Case No. 01.|
+        [TestCase(-4, 5, 1)]     // |Test Case No. 02.|
+        [TestCase(-3, -8, -11)]  // |Test Case No. 03.|
+        [TestCase(232, -232, 0)] // |Test Case No. 04.|
         public void IsAddWorkingWithTestCases(double a, double b, double expected) // This Method Will Be Tested 4 Times; One Time Per Test Case.
         {
             double testResult = CalculatorLib.Add(a, b); // |Arrange , Assert|
@@ -44,14 +44,14 @@ namespace CalculatorTests
 
         //Creating a Test for the Calculator.Subtract Method with 5 Test Cases.
         [Test]                  // |---Test Begins---|
-        [TestCase(4,3,1)]       // |Test Case No. 01.|
-        [TestCase(6,-7,13)]     // |Test Case No. 02.|
-        [TestCase(-13,20,-33)]  // |Test Case No. 03.|
-        [TestCase(125,25,100)]  // |Test Case No. 04.|
-        [TestCase(23,23,0)]     // |Test Case No. 05.|
+        [TestCase(4, 3, 1)]       // |Test Case No. 01.|
+        [TestCase(6, -7, 13)]     // |Test Case No. 02.|
+        [TestCase(-13, 20, -33)]  // |Test Case No. 03.|
+        [TestCase(125, 25, 100)]  // |Test Case No. 04.|
+        [TestCase(23, 23, 0)]     // |Test Case No. 05.|
         public void IsSubtractWorkingWithTestCases(double a, double b, double expected) // This Method Will Be Tested 5 Times; One Time Per Test Case.
         {
-            double testResult = CalculatorLib.Subtract(a,b); // |Arrange , Assert|
+            double testResult = CalculatorLib.Subtract(a, b); // |Arrange , Assert|
             Assert.AreEqual(expected, testResult);        // |-----Assert-----|
 
         }
@@ -94,7 +94,7 @@ namespace CalculatorTests
             double testResult = CalculatorLib.Divide(a, b); // |Arrange , Assert|
             Assert.AreEqual(expected, testResult);       // |-----Assert-----|
 
-            Assert.Throws<System.ArgumentException>(() => CalculatorLib.Divide(3,0));
+            Assert.Throws<System.ArgumentException>(() => CalculatorLib.Divide(3, 0));
         }
 
         //Creating a Test for the Calculator.Module Method With Fixed Parameters: (6,6) Result Should Be 0.
@@ -117,5 +117,5 @@ namespace CalculatorTests
 
         //}
 
-    }
+    } 
 }

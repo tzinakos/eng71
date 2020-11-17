@@ -8,6 +8,7 @@ namespace IterationLib
         {
             // this method should use a while loop
             int highest = int.MinValue;
+
             int i = 0;
             if (nums.Length==0)
             {
