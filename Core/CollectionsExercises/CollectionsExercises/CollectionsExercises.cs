@@ -1,5 +1,6 @@
 ﻿
 using System.Collections.Generic;
+using System.Text;
 
 namespace CollectionsExercises
 {
@@ -8,59 +9,60 @@ namespace CollectionsExercises
         /* removes and returns the next num entries in the queue, as a comma separated string */
         public static string NextInQueue(int num, Queue<string> queue)
         {
-            string result = "";
+            //string result = "";
 
-            if (num <= queue.Count)
+            //if (num <= queue.Count)
+            //{
+            //    for (int i = 0; i < num; i++)
+            //    {
+            //        if (i == num - 1) // if it is the last item in the queue
+            //        {
+
+            //            result += $"{queue.Dequeue()}";
+            //        }
+            //        else
+            //        {
+            //            result += $"{queue.Dequeue()}, ";
+            //        }
+            //    }
+            //}
+            //else
+
+            //    for (int i = queue.Count; i!=0 ; i--)
+            //    {
+            //        if (i == 1) // if it is the last item in the queue
+            //        {
+
+            //            result += $"{queue.Dequeue()}";
+            //        }
+            //        else
+            //        {
+            //            result += $"{queue.Dequeue()}, ";
+            //        }
+            //    }
+            var result = new StringBuilder();
+            num = num > queue.Count ? queue.Count : num;
+
+            for (int i = 0; i < num; i++)
             {
-                for (int i = 0; i < num; i++)
-                {
-                    if (i == num - 1)
-                    {
-
-                        result += $"{queue.Dequeue()}";
-                    }
-                    else
-                    {
-                        result += $"{queue.Dequeue()}, ";
-                    }
-                }
+                result.Append($"{queue.Dequeue()}, ");
             }
-            else
-                
-                for (int i = queue.Count; i!=0 ; i--)
-                {
-                    if (i == 1)
-                    {
-                        
-                        result += $"{queue.Dequeue()}";
-                    }
-                    else
-                    {
-                        result += $"{queue.Dequeue()}, ";
-                    }
-                }
 
-            return result;
+            return result.Length < 1 ? "" : result.Remove(result.Length - 2, 2).ToString();
         }
 
         /* uses a Stack to create and return array of ints in reverse order to the one supplied */
         public static int[] Reverse(int[] original)
         {
-            Stack<int> reverse = new Stack<int>();
-           // int[] originalReversed = new int[original.Length];
+            Stack<int> reverse = new Stack<int>(original);
+            return reverse.ToArray();
 
-            foreach (int number in original)
-            {
-                reverse.Push(number);
-            }            
-            //int i = 0;
-            //foreach (int reversedNumber in reverse)
+            //foreach (int number in original)
             //{
-            //    originalReversed[i] = reversedNumber;
-            //    i++;
-            //}
+            //    reverse.Push(number);
+            //}            
 
-            return reverse.ToArray(); 
+
         }
         // using a Dictionary, counts and returns (as a string) the occurence of the digits 0-9 in the given string
         public static string CountDigits(string input)
@@ -73,15 +75,15 @@ namespace CollectionsExercises
            
             string output="";
 
-            foreach (char num in input)
+            foreach (char num in input) // This loop increments the occurances of the characters in the Dictionary
             {
                 if (occurance.ContainsKey(num))
                 {
                     occurance[num] += 1;
-                }
+                }               
             }
 
-            List<char> printed = new List<char>();
+            List<char> printed = new List<char>(); // This List Holds The Already Printed Chars.
 
             foreach (char num in input)
             {

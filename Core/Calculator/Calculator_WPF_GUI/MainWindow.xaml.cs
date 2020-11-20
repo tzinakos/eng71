@@ -388,8 +388,10 @@ namespace Calculator_WPF_GUI
         private void Percentage_Click(object sender, RoutedEventArgs e)
         {
             doOperation('%', ' ');
-          
+
+           
         }
+      
 
         //Checks For Operations that are in Queue, if there are none then proceed with the triggered operation.
         private char ChechForOperation(char theDefaut)

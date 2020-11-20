@@ -133,10 +133,11 @@ namespace Calculator
         {
             if (y == 0)
             {
-                throw new System.ArgumentException("You can not divide by 0", "y");
+                throw new System.DivideByZeroException("You can not divide by 0");
             }
             else
-                return x / y;
+                return Math.Round((x / y),1);
+
         }
         /// <summary>
         /// Accepts two integer and returns the remaider of their division.

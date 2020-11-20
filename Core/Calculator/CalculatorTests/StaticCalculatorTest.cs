@@ -85,8 +85,8 @@ namespace CalculatorTests
 
         //Creating a Test for the Calculator.Divide Method with 4 Test Cases.
         [Test]                    // |---Test Begins---|
-        [TestCase(4, 3, 1)]       // |Test Case No. 01.|
-        [TestCase(5, 6, 0)]       // |Test Case No. 02.|
+        [TestCase(4, 3, 1.3)]       // |Test Case No. 01.|
+        [TestCase(5, 6, 0.8)]       // |Test Case No. 02.|
         [TestCase(-13, -13, 1)]   // |Test Case No. 03.|
         [TestCase(125, 25, 5)]    // |Test Case No. 04.|
         public void IsDivideWorkingWithTestCases(double a, double b, double expected) // This Method Will Be Tested 4 Times; One Time Per Test Case.
@@ -94,7 +94,7 @@ namespace CalculatorTests
             double testResult = CalculatorLib.Divide(a, b); // |Arrange , Assert|
             Assert.AreEqual(expected, testResult);       // |-----Assert-----|
 
-            Assert.Throws<System.ArgumentException>(() => CalculatorLib.Divide(3, 0));
+            Assert.Throws<System.DivideByZeroException>(() => CalculatorLib.Divide(3, 0));
         }
 
         //Creating a Test for the Calculator.Module Method With Fixed Parameters: (6,6) Result Should Be 0.
@@ -105,11 +105,11 @@ namespace CalculatorTests
         }
 
         //Creating a Test for the Calculator.Module Method with 4 Test Cases. 
-        [Test]                    // |---Test Begins---|
-        [TestCase(4, 3, 1)]       // |Test Case No. 01.|
-        [TestCase(5, 6, 5)]       // |Test Case No. 02.|
-        [TestCase(-13, -13, 0)]   // |Test Case No. 03.|
-        [TestCase(125, 124, 1)]   // |Test Case No. 04.|
+        //[Test]                    // |---Test Begins---|
+        //[TestCase(4, 3, 1)]       // |Test Case No. 01.|
+        //[TestCase(5, 6, 5)]       // |Test Case No. 02.|
+        //[TestCase(-13, -13, 0)]   // |Test Case No. 03.|
+        //[TestCase(125, 124, 1)]   // |Test Case No. 04.|
         //public void IsModuleWorkingWithTestCases(double a, double b, double expected) // This Method Will Be Tested 4 Times; One Time Per Test Case.
         //{
         //    double testResult = CalculatorLib.Module(a, b); // |Arrange , Assert|
