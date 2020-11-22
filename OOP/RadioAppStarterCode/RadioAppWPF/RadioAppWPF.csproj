@@ -1,0 +1,87 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Background.png" />
+    <None Remove="Background1.png" />
+    <None Remove="Background2.png" />
+    <None Remove="Fav.png" />
+    <None Remove="Hum.png" />
+    <None Remove="Next Arrow.png" />
+    <None Remove="On.png" />
+    <None Remove="Play.png" />
+    <None Remove="Previous Arrow.png" />
+    <None Remove="UFav.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <COMReference Include="MediaPlayer.dll">
+      <WrapperTool>tlbimp</WrapperTool>
+      <VersionMinor>0</VersionMinor>
+      <VersionMajor>1</VersionMajor>
+      <Guid>22d6f304-b0f6-11d0-94ab-0080c74c7e95</Guid>
+      <Lcid>0</Lcid>
+      <Isolated>false</Isolated>
+    </COMReference>
+    <COMReference Include="WMPLib.dll">
+      <WrapperTool>tlbimp</WrapperTool>
+      <VersionMinor>0</VersionMinor>
+      <VersionMajor>1</VersionMajor>
+      <Guid>6bf52a50-394a-11d3-b153-00c04f79faa6</Guid>
+      <Lcid>0</Lcid>
+      <Isolated>false</Isolated>
+    </COMReference>
+    <COMReference Include="WMLSS.dll">
+      <WrapperTool>tlbimp</WrapperTool>
+      <VersionMinor>0</VersionMinor>
+      <VersionMajor>1</VersionMajor>
+      <Guid>c21e9ce5-b317-463b-a1b1-b5e36eed59d0</Guid>
+      <Lcid>0</Lcid>
+      <Isolated>false</Isolated>
+    </COMReference>
+    <COMReference Include="WMPDXMLib.dll">
+      <WrapperTool>tlbimp</WrapperTool>
+      <VersionMinor>0</VersionMinor>
+      <VersionMajor>1</VersionMajor>
+      <Guid>73f0dd5c-d071-46b6-a8bf-897c84eaac49</Guid>
+      <Lcid>0</Lcid>
+      <Isolated>false</Isolated>
+    </COMReference>
+    <COMReference Include="WMPLauncher.dll">
+      <WrapperTool>tlbimp</WrapperTool>
+      <VersionMinor>0</VersionMinor>
+      <VersionMajor>1</VersionMajor>
+      <Guid>5cb42160-cd7c-4806-9367-1c4a65153f4a</Guid>
+      <Lcid>0</Lcid>
+      <Isolated>false</Isolated>
+    </COMReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Newtonsoft.Json.Schema" Version="3.0.13" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RadioApp\RadioApp.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Background.png" />
+    <Resource Include="Background1.png" />
+    <Resource Include="Background2.png" />
+    <Resource Include="Fav.png" />
+    <Resource Include="Hum.png" />
+    <Resource Include="Next Arrow.png" />
+    <Resource Include="On.png" />
+    <Resource Include="Play.png" />
+    <Resource Include="Previous Arrow.png" />
+    <Resource Include="UFav.png" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,67 @@
+[
+  {
+    'Name': 'Rock Fm 96.9',
+    'Description': '96.9 ROCK FM is one of the most historic stations in Athens since it has been broadcasting since 1989! On Rock FM you listen to your favorite rock and not only songs from all eras. From the beginning it continues steadily with the same name, which makes it one of the most historic stations in the city. The name of the station also defines its musical identity, but this does not create strict limits, hosting all the musical colors of this and every era.',
+    'Country': 'Gr',
+    'Category': 'Rock',
+    'Favorite':'0',
+    'Url': 'http://rockfmlive.mdc.akamaized.net/strmRCFm/userRCFm/playlist.m3u8'
+  },
+  {
+    'Name': 'Sfera 102,2',
+    'Description': 'Let's all go to Sfera at 102.2. It aired in 1996 and since then has become part of the daily lives of thousands of listeners every day. Sfera dares and includes in his music program, artists and songs that immediately become hits! Finally, let us tell you that every year Sfera 102.2 organizes events and concerts with great success!',
+   'Country': 'Gr',
+   'Category': 'MainStream',
+    'Favorite':'0',
+    'Url': 'http://sfera.live24.gr:80/sfera4132'
+  },
+  {
+    "Name": "Mad Radio 106.2",
+    "Description": "How beautiful to have all the great foreign hits in one station! MAD radio broadcast on 106.2 MHz on June 6, 1996 in the summer of 2006 with Andreas M. Kouris at the helm. Well-known producers have switched to MAD radio and today excel at other frequencies. MAD radio is in its 11th year this year and continues its course with the same passion. It was the (former Ecstasy 106.2, South FM 106.1, Diva FM 106.1)! The station is owned by MAD TV Societe Anonyme, which was founded on January 9, 1995, and Solar Broadcasting and Entertainment Services Societe Anonyme. Their shareholder is PandaLaw Management Limited (100%) in which MAD Television Licensing Limited (90%) and Maria Kontomina (10%) participate. MAD radio could not be absent from the family of Live24.gr!",
+    "Country": "Gr",
+    "Category": "Pop",
+    "Favorite": 0,
+    "Url": "http://mediaserver.mad.tv:80/stream"
+  },
+  {
+    "Name": "Athens Dj 95.2",
+    "Description": "95.2 Athens DeeJay is a youth radio station founded in 2000! Every morning 7-10 starts dynamically with Michalis Tsousopoulos and Breakfast on FM! Athens DeeJay is very high in the preferences of pupils and students and plays mainly foreign mainstream! 95.2 Athens DeeJay enables its listeners to win unique gifts such as monthly rent, cash and invitations to go out. Athens DeeJay only plays Successes on Live24.gr",
+    "Country": "Gr",
+    "Category": "pop",
+    "Favorite": 0,
+    "Url": "http://netradio.live24.gr:80/athensdeejay"
+  },
+  {
+    "Name": "BBC Radio 1",
+    "Description": "BBC Radio 1 is a British national radio station owned and operated by the BBC, specialising in modern popular music and current chart hits throughout the day.",
+    "Country": "GB",
+    "Category": "BBC",
+    "Favorite": 0,
+    "Url": "http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio1_mf_p"
+  },
+  {
+    "Name": "BBC Radio 2",
+    "Description": "BBC Radio 2 is one of the BBC's national radio stations and the most popular station in the United Kingdom with over 15 million weekly listeners. Much of its daytime playlist-based programming is adult contemporary or AOR, although the station also broadcasts other specialist musical genres.",
+    "Country": "GB",
+    "Category": "BBC",
+    "Favorite": 0,
+    "Url": "http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio2_mf_p"
+  },
+  {
+    "Name": "BBC Radio 3",
+    "Description": "BBC Radio 3 is a British radio station operated by the BBC. Its output centres on classical music and opera, but jazz, world music, drama, culture and the arts also feature",
+    "Country": "GB",
+    "Category": "BBC",
+    "Favorite": 0,
+    "Url": "http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio3_mf_p"
+  },
+  {
+    "Name": "BBC Radio 4",
+    "Description": "BBC Radio 4 is a radio station owned and operated by the British Broadcasting Corporation. A part of BBC Radio, it broadcasts a wide variety of spoken-word programmes including news, drama, comedy, science and history from the BBC's headquarters at Broadcasting House, London. It replaced the BBC Home Service in 1967",
+    "Country": "GB",
+    "Category": "BBC",
+    "Favorite": 0,
+    "Url": "http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio4fm_mf_p"
+  }
+]
+

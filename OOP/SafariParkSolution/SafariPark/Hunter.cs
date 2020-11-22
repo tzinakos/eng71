@@ -4,12 +4,12 @@ using System.Text;
 
 namespace SafariPark
 {
-    public class Hunter : Person
+    public class Hunter : Person, IShootable
     {
         private string _camera;
         private double _health =100;
         private Point3D _position;
-
+        private IShootable _shootable;
         public double Health
         {
             get { return _health; }
@@ -22,16 +22,22 @@ namespace SafariPark
             set { _position = value; }
         }
 
-        public Hunter(string fName, string lName, Point3D position, string camera="") : base(fName, lName)
+        public IShootable Shootable
         {
-            _camera = camera;
+            get { return _shootable; }
+            set { _shootable = value; }
+        }
+
+        public Hunter(string fName, string lName, Point3D position, IShootable shootable) : base(fName, lName)
+        {
+            _shootable = shootable;
             _position = position;
             
         }
         public Hunter() { }
         public string Shoot()
         {
-            return $"{GetFullName()} has taken a photo with their {_camera}";
+            return $"{GetFullName()}: {_shootable.Shoot()}";
         }
 
         

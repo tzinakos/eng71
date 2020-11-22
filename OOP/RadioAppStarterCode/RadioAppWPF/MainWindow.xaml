@@ -1,0 +1,308 @@
+﻿<Window x:Class="RadioAppWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RadioAppWPF"
+        mc:Ignorable="d"
+          
+    
+    Title="MainWindow" Height="500" Width="500" MaxWidth="500" MaxHeight="500"
+        MinHeight="500" MinWidth="500">
+
+
+
+    <Grid>
+
+        <!-- Grid Style Soft Black Gradient Pallete-->
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF414A4C"/>
+                <GradientStop Color="#FF232B2B" Offset="0.67"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid Grid.Column="0" Background="#232b2b">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+
+            <ListBox Grid.Row="0" x:Name="FavoritesList"  BorderThickness="0" Margin="0" Width="149"
+                     Background="Transparent" Foreground="#008037"
+                     VerticalAlignment="Stretch" HorizontalAlignment="Left" HorizontalContentAlignment="Stretch"
+                         Height="auto" FontSize="20"  MouseDoubleClick="DoubleCklick" >
+
+                <Label Foreground= "White"  Content="My Favorites" 
+                       HorizontalContentAlignment="Right" VerticalContentAlignment="Stretch"
+                       HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                       BorderThickness="0" Margin="0" Focusable="False" FontSize="17">
+
+                    <Label.Background>
+                        <LinearGradientBrush EndPoint="1,1" StartPoint="0,.5">
+                            <GradientStop Color="#FF232B2B" Offset=".0"/>
+                            <GradientStop Color="#008037" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Label.Background>
+
+                </Label>
+
+
+            </ListBox>
+            <ListBox Grid.Row="1" x:Name="GbRadio"
+                     Background="Transparent" Foreground="#008037" Width="149"
+                     Height="auto" FontSize="20"  MouseDoubleClick="DoubleCklick" 
+                     HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
+                      BorderThickness="0" Margin="0">
+
+                <Label Foreground= "White"  Content="GB Radio" 
+                       HorizontalContentAlignment="Right" VerticalContentAlignment="Stretch"
+                       HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                       BorderThickness="0" Margin="0" FontSize="17">
+
+                    <Label.Background>
+                        <LinearGradientBrush EndPoint="1,1" StartPoint="0,.5">
+                            <GradientStop Color="#FF232B2B" Offset=".0"/>
+                            <GradientStop Color="#008037" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Label.Background>
+                </Label>
+
+            </ListBox>
+            <ListBox Grid.Row="2" x:Name="GrRadio"  Width="149"
+                     Background="Transparent" Foreground="#008037" 
+                     HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
+                     Height="auto" FontSize="20"  BorderThickness="0" MouseDoubleClick="DoubleCklick">
+
+                <Label Foreground= "White" Content="Gr Radio" 
+                       HorizontalContentAlignment="Right" VerticalContentAlignment="Stretch"
+                       HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                       BorderThickness="0" Margin="0" Height="auto" FontSize="17">
+                    
+                    <Label.Background>
+                        <LinearGradientBrush EndPoint="1,1" StartPoint="0,.5">
+                            <GradientStop Color="#FF232B2B" Offset=".0"/>
+                            <GradientStop Color="#008037" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Label.Background>
+                </Label>
+            </ListBox>
+
+        </Grid>
+
+        <Grid Grid.Column="1" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="2.5*"/>
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition/>
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="8*"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="PowerButton" Content=""  Style="{DynamicResource ButtonStyle1}"
+                        Grid.Column="2" HorizontalAlignment="Center" 
+                        VerticalAlignment="Center"
+                        Height="70" Width="70">
+                    <Button.FocusVisualStyle>
+                        <Style/>
+                    </Button.FocusVisualStyle>
+                    <Button.Background>
+                        <ImageBrush ImageSource="/On.png" Stretch="UniformToFill"/>
+                    </Button.Background>
+
+                </Button>
+                <Button x:Name="HumButon" Content="" Style="{DynamicResource ButtonStyle1}"
+                        Grid.Column="0" HorizontalAlignment="Center" 
+                        VerticalAlignment="Center"
+                        Height="70" Width="70">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Hum.png" Stretch="UniformToFill"/>
+                    </Button.Background>
+
+                </Button>
+                <TextBox x:Name="ApplicationName" Text="GR Radio Station" 
+                       Grid.Column="1" HorizontalAlignment="Stretch" 
+                        VerticalAlignment="Stretch" Foreground="White"
+                       FontSize="15" HorizontalContentAlignment="Center"
+                       VerticalContentAlignment="Center" BorderThickness="0,0,0,3" BorderBrush="#008037"
+                         Background="Transparent"   Padding="0,0,0,10"/>
+
+
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+
+                    <RowDefinition/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+
+                <TextBox Grid.Row="0" x:Name="NowPlaying"
+                         Text="Now Playing: Rock Fm 96.3" Background="Transparent"
+                         Foreground="White" HorizontalAlignment="center"
+                         FontSize="15" BorderThickness="0" Focusable="False"
+                         VerticalAlignment="Center">
+                </TextBox>
+
+                <TextBox Grid.Row="1" x:Name="Description"
+                         Text="Lorem Ipsum is simply dummy text of the printing and typesetting industry." 
+                         Background="Transparent"
+                         Foreground="White" HorizontalAlignment="Center" TextWrapping="Wrap"
+                         FontSize="10" VerticalAlignment="top" HorizontalContentAlignment="Center"
+                           Focusable="False" BorderThickness="0" Opacity="0.5" >
+                </TextBox>
+
+
+            </Grid>
+            <Image Grid.Row="2" RenderTransformOrigin="0.5, 0.5" Source="/Background1.png" Width="150" Height="150" HorizontalAlignment="Left"
+                   VerticalAlignment="Center" StretchDirection="Both" IsEnabled="False">
+                <Image.RenderTransform>
+                    <!-- giving the transform a name tells the framework not to freeze it -->
+                    <RotateTransform x:Name="noFreeze" />
+                </Image.RenderTransform>
+                <Image.Triggers>
+                    <EventTrigger RoutedEvent="Loaded">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                                    Storyboard.TargetProperty="(Image.RenderTransform).(RotateTransform.Angle)"
+                                    From="0" To="45" AutoReverse="True" Duration="0:0:.9" RepeatBehavior="Forever"  />
+                                <DoubleAnimation
+                                    Storyboard.TargetProperty="Width" 
+                                    From="150" To="180" AutoReverse="True" Duration="0:0:.9" RepeatBehavior="Forever" />
+                                <DoubleAnimation
+                                    Storyboard.TargetProperty="Height" 
+                                    From="150" To="180" AutoReverse="True" Duration="0:0:.9" RepeatBehavior="Forever" />
+
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Image.Triggers>
+
+            </Image>
+            <Image Grid.Row="2" RenderTransformOrigin="0.5, 0.5" Source="/Background2.png" Width="150" Height="150" HorizontalAlignment="Right"
+                   VerticalAlignment="Center" StretchDirection="Both" >
+
+                <Image.RenderTransform>
+                    
+                    <RotateTransform x:Name="nokFreeze" />
+                </Image.RenderTransform>
+                <Image.Triggers>
+                    <EventTrigger RoutedEvent="Loaded">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                                    Storyboard.TargetProperty="(Image.RenderTransform).(RotateTransform.Angle)"
+                                    From="0" To="-45" AutoReverse="True" Duration="0:0:.9" RepeatBehavior="Forever"  />
+                                <DoubleAnimation
+                                    Storyboard.TargetProperty="Width" 
+                                    From="150" To="180" AutoReverse="True" Duration="0:0:.9" RepeatBehavior="Forever" />
+                                <DoubleAnimation
+                                    Storyboard.TargetProperty="Height" 
+                                    From="150" To="180" AutoReverse="True" Duration="0:0:.9" RepeatBehavior="Forever" />
+                            </Storyboard>
+                            
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Image.Triggers>
+            </Image>
+            <!--<Grid Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <TextBox Grid.Row="0" x:Name="NextChannels"
+                         Text="Other Chanels From This Radio."
+                         VerticalAlignment="Center" HorizontalAlignment="Center"
+                         VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                         Background="Transparent" Foreground="White" FontSize="15"
+                         Focusable="False" BorderThickness="0">
+
+                </TextBox>
+
+
+                <ListBox Height="50" x:Name="ChanelList" BorderThickness="0"
+                         Background="Transparent" Grid.Row="1" Foreground="White"
+                         VerticalAlignment="Center" HorizontalAlignment="Center" >
+                    <ListBox.ItemsPanel >
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBoxItem  Content="aaaaaaaaaaa"/>
+                    <ListBoxItem  Content="aaaaaaaaaaa"/>
+                    <ListBoxItem  Content="aaaaaaaaaaa"/>
+                    <ListBoxItem  Content="aaaaaaaaaaa"/>
+                </ListBox>
+
+
+
+            </Grid>-->
+
+            <Grid Grid.Row="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="FavButton" Content="" Style="{DynamicResource ButtonStyle1}"
+                        Grid.Column="1" HorizontalAlignment="Center" 
+                        VerticalAlignment="Center" Width="80" Height="80" BorderThickness="0"
+                        Margin="0,20,0,0">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/UFav.png" Stretch="UniformToFill"/>
+                    </Button.Background>
+                </Button>
+                <Button x:Name="PreviusButton" Content="" Style="{DynamicResource ButtonStyle1}"
+                        Grid.Column="0" HorizontalAlignment="Right"  
+                        VerticalAlignment="Center" Width="100" Height="100" BorderThickness="0"
+                        Margin="0,0,0,50">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Previous Arrow.png" Stretch="UniformToFill"/>
+                    </Button.Background>
+                </Button>
+                <Button x:Name="NextButton" Content="" Style="{DynamicResource ButtonStyle1}"
+                        Grid.Column="2" HorizontalAlignment="Left"  
+                        VerticalAlignment="Center" Width="100" Height="100" BorderThickness="0"
+                        Margin="0,0,0,50">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Next Arrow.png" Stretch="UniformToFill"/>
+                    </Button.Background>
+                </Button>
+            </Grid>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="PlayButton" Content="" Grid.Row="3"
+                        Grid.Column="2" HorizontalAlignment="Center"  
+                        VerticalAlignment="Center" Click="PlayButton_Click"
+                    Width="100" Height="100" BorderThickness="0">
+                <Button.Background>
+                    <ImageBrush ImageSource="/Play.png" Stretch="UniformToFill"/>
+                </Button.Background>
+
+            </Button>
+
+
+            <Slider Style="{DynamicResource MySlider}" Grid.Row="5" x:Name="VolumeSlider" HorizontalAlignment="Center"  
+                    VerticalAlignment="Center" Width="200" Minimum="0" Maximum="100" 
+                    Foreground="#008037" Value="100" ValueChanged="VolumeSlider_ValueChanged">
+
+            </Slider>
+
+
+        </Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.4*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+    </Grid>
+
+</Window>

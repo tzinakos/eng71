@@ -114,7 +114,7 @@ namespace SafariPark
                 {
                     hunter.Health = 0;
                     Die();
-                    Console.WriteLine($"{hunter.GetFullName()} is Dead stop attacking him!\n");
+                    Console.WriteLine($"The hunter with name: {hunter.GetFullName()} is Dead stop attacking him!\n");
                 }
                 else
                 {
@@ -123,7 +123,7 @@ namespace SafariPark
                     if (hunter.Health<0)
                     {
                         hunter.Health = 0;
-                        Console.WriteLine($"got {_attackDamage} damage and now hi is Dead\n");
+                        Console.WriteLine($"got {_attackDamage} damage and now he is Dead\n");
                     }
                     else
                     Console.WriteLine($"got {_attackDamage} damage and now his health = {hunter.Health}\n");
@@ -131,7 +131,7 @@ namespace SafariPark
             }
             else
             {
-                Console.WriteLine($"{hunter.GetFullName()} is out of range\n");
+                Console.WriteLine($"The hunter with name: { hunter.GetFullName()} is out of range\n");
                 
             }
         }
