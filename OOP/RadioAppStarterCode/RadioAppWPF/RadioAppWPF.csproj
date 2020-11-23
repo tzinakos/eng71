@@ -4,6 +4,7 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>tabletop-radio-64.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,9 +14,13 @@
     <None Remove="Fav.png" />
     <None Remove="Hum.png" />
     <None Remove="Next Arrow.png" />
+    <None Remove="off.png" />
+    <None Remove="OffB.png" />
     <None Remove="On.png" />
+    <None Remove="Pause.png" />
     <None Remove="Play.png" />
     <None Remove="Previous Arrow.png" />
+    <None Remove="tabletop-radio-64.ico" />
     <None Remove="UFav.png" />
   </ItemGroup>
 
@@ -78,9 +83,13 @@
     <Resource Include="Fav.png" />
     <Resource Include="Hum.png" />
     <Resource Include="Next Arrow.png" />
+    <Resource Include="off.png" />
+    <Resource Include="OffB.png" />
     <Resource Include="On.png" />
+    <Resource Include="Pause.png" />
     <Resource Include="Play.png" />
     <Resource Include="Previous Arrow.png" />
+    <Resource Include="tabletop-radio-64.ico" />
     <Resource Include="UFav.png" />
   </ItemGroup>
 

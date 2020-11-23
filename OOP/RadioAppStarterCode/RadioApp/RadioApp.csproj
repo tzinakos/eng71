@@ -7,6 +7,25 @@
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="Newtonsoft.Json.Schema" Version="3.0.13" />
+    <PackageReference Include="RestSharp" Version="106.11.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Interop.MediaPlayer">
+      <HintPath>..\RadioAppWPF\bin\Debug\netcoreapp3.1\Interop.MediaPlayer.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.WMLSS">
+      <HintPath>..\RadioAppWPF\bin\Debug\netcoreapp3.1\Interop.WMLSS.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.WMPDXMLib">
+      <HintPath>..\RadioAppWPF\bin\Debug\netcoreapp3.1\Interop.WMPDXMLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.WMPLauncher">
+      <HintPath>..\RadioAppWPF\bin\Debug\netcoreapp3.1\Interop.WMPLauncher.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.WMPLib">
+      <HintPath>..\RadioAppWPF\bin\Debug\netcoreapp3.1\Interop.WMPLib.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties radiochanels_1json__JsonSchema="Json.Net" /></VisualStudio></ProjectExtensions>

@@ -16,52 +16,56 @@ using System.Windows.Shapes;
 using System.IO;
 using RadioApp;
 
+
 namespace RadioAppWPF
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
-    {
+    public partial class MainWindow : Window 
+    { 
         public MainWindow()
         {
-
-            InitializeComponent();
-            PlayMusicFromURL("https://internetradiouk.com/#kiss-london");
-            somethinsg();
-
-
-            
            
+            InitializeComponent();
+            Radio radio = new Radio();
+            radio.CreateChannelsAsync();
+            
+            RefreshChanelsToUI();
+            TurnOnOffUI();
+
+
         }
   
-        public bool isOn = true;
-        public static WMPLib.WindowsMediaPlayer player = new WMPLib.WindowsMediaPlayer();
-        
-        public static void PlayMusicFromURL(string url)
-        {
-            player.URL = url;
-
-            player.settings.volume = 100;
-
-            player.controls.play();
-        }
-        public void somethinsg()
+        public void RefreshChanelsToUI()
         {
             
-            Radio radio = new Radio();
-            radio.CreateChannels();
+            int gbChannelsCount = GbRadio.Items.Count;
+            int grChannelsCount = GrRadio.Items.Count;
+            int FavoritesListCount = FavoritesList.Items.Count;
+            for (int i = 1; i < gbChannelsCount; i++)
+            {
+                GbRadio.Items.RemoveAt(1);                 
+            }
+            for (int i = 1; i < grChannelsCount; i++)
+            {
+                GrRadio.Items.RemoveAt(1);
+            }
+            for (int i = 1; i < FavoritesListCount; i++)
+            {
+                FavoritesList.Items.RemoveAt(1);
+            }
+
             foreach (var item in Radio.ChanelList)
             {
-                if (item.Country == "GB")
+                if (item.Country == "GB"|| item.Country=="UK")
                 {
                     Style style = this.FindResource("ListBoxItemStyle1") as Style;
                     GbRadio.ItemContainerStyle = style;
-                    GbRadio.Items.Add(item.Name);
-                   
+                    GbRadio.Items.Add(item.Name);          
                  
                 }
-                else if (item.Country == "Gr")
+                else if (item.Country == "Gr" || item.Country == "GR")
                 {
                     Style style = this.FindResource("ListBoxItemStyle1") as Style;
                     FavoritesList.ItemContainerStyle = style;
@@ -73,37 +77,56 @@ namespace RadioAppWPF
                 {
                     Style style = this.FindResource("ListBoxItemStyle1") as Style;
                     FavoritesList.Items.Add(item.Name);
-                    FavoritesList.ItemContainerStyle = Style;
+                   
+                    FavoritesList.ItemContainerStyle = style;
                 }
             }
 
         }
-        public static void PlayerStop(string url)
-        {
-            player.controls.stop();
-        }
-
-        public static void SetPlayerVolume(int volume)
-        {
-            player.settings.volume = volume;
-        }
 
         private void VolumeSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            SetPlayerVolume((int)VolumeSlider.Value);
+            Radio.SetPlayerVolume((int)VolumeSlider.Value);
         }
+
 
         private void PlayButton_Click(object sender, RoutedEventArgs e)
         {
-            if (isOn)
+            if (Radio.On)
             {
-                player.controls.pause();
-                isOn = false;
+                if (Radio.IsPlaying)
+                {
+
+                    Radio.radioPlayer.controls.pause();
+                    Radio.IsPlaying = false;
+                    PlayButton.Background = new ImageBrush
+                    {
+                        ImageSource = new BitmapImage(new Uri("C:\\Users\\User\\github\\eng71\\OOP\\RadioAppStarterCode\\RadioAppWPF\\Play.png"))
+
+                    };
+                    Image1.IsEnabled = false;
+                    Image2.IsEnabled = false;
+
+                }
+                else
+                {
+                    if (Radio.RadioPlayerHasUrl == true)
+                    {
+                        Radio.radioPlayer.controls.play();
+                        Radio.IsPlaying = true;
+                        PlayButton.Background = new ImageBrush
+                        {
+                            ImageSource = new BitmapImage(new Uri("C:\\Users\\User\\github\\eng71\\OOP\\RadioAppStarterCode\\RadioAppWPF\\Pause.png")),
+
+                        };
+                        Image1.IsEnabled = true;
+                        Image2.IsEnabled = true;
+                    }
+                }
             }
             else
             {
-                player.controls.play();
-                isOn = true;
+                return;
             }
         }
 
@@ -111,27 +134,154 @@ namespace RadioAppWPF
         {
             
         }
+
         private void DoubleCklick(object sender, RoutedEventArgs e)
         {
-            var chanel = (sender as ListBox).SelectedItem.ToString(); ;
-
-            string next = "";
-            
-            foreach (var item in Radio.ChanelList)
+            if (Radio.On)
             {
-                if (item.Name == chanel) 
+                var chanel = (sender as ListBox).SelectedItem.ToString(); ;
+
+                string selectedChanel = "";
+                string selectedFav = "";
+
+                foreach (var item in Radio.ChanelList)
                 {
-                    next = item.Url;
-                    ApplicationName.Text = $"{item.Country} Radio Station";
-                    NowPlaying.Text = $"Now Playing: {item.Name}";
-                    Description.Text = item.Description;
+                    if (item.Name == chanel)
+                    {
+                        selectedChanel = item.Url;
+                        selectedFav = item.Favorite;
+                        ApplicationName.Text = $"{item.Country} Radio Station";
+                        NowPlaying.Text = $"Now Playing: {item.Name}";
+                        Description.Text = item.Description;
+                        
+                    }
+
                 }
-                
+                Radio.Play(selectedChanel);
+                Image1.IsEnabled = true;
+                Image2.IsEnabled = true;
+
+                if (selectedFav == "1")
+                {
+                    FavButton.Background = new ImageBrush
+                    {
+                        ImageSource = new BitmapImage(new Uri("C:\\Users\\User\\github\\eng71\\OOP\\RadioAppStarterCode\\RadioAppWPF\\Fav.png"))
+                    };
+                }else
+                {
+                    FavButton.Background = new ImageBrush
+                    {
+                        ImageSource = new BitmapImage(new Uri("C:\\Users\\User\\github\\eng71\\OOP\\RadioAppStarterCode\\RadioAppWPF\\UFav.png"))
+                    };
+                }
+                PlayButton.Background = new ImageBrush
+                {
+                    ImageSource = new BitmapImage(new Uri("C:\\Users\\User\\github\\eng71\\OOP\\RadioAppStarterCode\\RadioAppWPF\\Pause.png")),
+
+                };
+
             }
-            PlayMusicFromURL(next);
-
-
+            else return;
 
         }
+
+        private void PowerButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (Radio.On)
+            {
+                Radio.TurnOff();
+                PlayButton.Background = new ImageBrush
+                {
+                    ImageSource = new BitmapImage(new Uri("C:\\Users\\User\\github\\eng71\\OOP\\RadioAppStarterCode\\RadioAppWPF\\Play.png"))
+
+                };
+                TurnOnOffUI();
+
+
+            }
+            else Radio.TurnOn();
+            TurnOnOffUI();
+        }
+
+        private void TurnOnOffUI()
+        {
+            if(Radio.On)
+            {
+                PlayButton.Opacity = 1;
+               
+                NextButton.Opacity = 1;
+                PreviusButton.Opacity = 1;
+                FavButton.Opacity = 1;
+                ApplicationName.Text = "Listen To Your Favorite Radio Station.";
+                Description.Text = "";
+                NowPlaying.Text = "Select A Radio Chanel.";
+            }
+            else
+            {
+                PlayButton.Opacity = .5;
+                NextButton.Opacity = .5;
+                PreviusButton.Opacity =.5;
+                FavButton.Opacity = .5;
+                ApplicationName.Text = "Listen To Your Favorite Radio Station.";
+                Description.Text = "";
+                NowPlaying.Text = "Turn On The Radio And Enjoy";
+                Image1.IsEnabled = false;
+                Image2.IsEnabled = false;
+               
+            }   
+        }
+
+        private void FavButton_Click(object sender, RoutedEventArgs e)
+        {   
+            Radio.AddToFavorites(Radio.IsPlayingNow.Url);
+
+            if (Radio.IsPlayingNow.Favorite == "0")
+            {
+                FavButton.Background = new ImageBrush
+                {
+                    ImageSource = new BitmapImage(new Uri("C:\\Users\\User\\github\\eng71\\OOP\\RadioAppStarterCode\\RadioAppWPF\\UFav.png"))
+                };
+            }
+            else
+            {
+                FavButton.Background = new ImageBrush
+                {
+                    ImageSource = new BitmapImage(new Uri("C:\\Users\\User\\github\\eng71\\OOP\\RadioAppStarterCode\\RadioAppWPF\\Fav.png"))
+                };
+            }
+            RefreshChanelsToUI();
+        }
+
+        private void HumButon_Click(object sender, RoutedEventArgs e)
+        {
+            GrRadio.IsEnabled = !GrRadio.IsEnabled;
+            GbRadio.IsEnabled = !GbRadio.IsEnabled;
+            FavoritesList.IsEnabled = !FavoritesList.IsEnabled;
+            RefreshChanelsToUI();
+        }
+
+        private void NextButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (Radio.IsPlaying)
+            {
+                Radio.PlayNext();
+
+                ApplicationName.Text = $"{Radio.IsPlayingNow.Country} Radio Station";
+                NowPlaying.Text = $"Now Playing: {Radio.IsPlayingNow.Name}";
+                Description.Text = Radio.IsPlayingNow.Description;
+            }
+        }
+
+        private void PreviusButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (Radio.IsPlaying)
+            {
+                Radio.PlayPrevious();
+                ApplicationName.Text = $"{Radio.IsPlayingNow.Country} Radio Station";
+                NowPlaying.Text = $"Now Playing: {Radio.IsPlayingNow.Name}";
+                Description.Text = Radio.IsPlayingNow.Description;
+            }
+        }
     }
+
 }

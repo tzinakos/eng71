@@ -3,98 +3,43 @@ using System.Linq;
 using System.IO;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Net.Http;
+using RestSharp;
 
 namespace RadioApp
 {
-    public  class Radio
+    public class Radio
     {
 
-        
-        static string json = @"{
-  'channel': [
-              {
-            'Name': 'Rock Fm 96.9',
-            'Description': '96.9 ROCK FM is one of the most historic stations in Athens since it has been broadcasting since 1989! On Rock FM you listen to your favorite rock and not only songs from all eras. From the beginning it continues steadily with the same name, which makes it one of the most historic stations in the city. The name of the station also defines its musical identity, but this does not create strict limits, hosting all the musical colors of this and every era.',
-            'Country': 'Gr',
-            'Category': 'Rock',
-            'Favorite':'0',
-            'Url': 'http://rockfmlive.mdc.akamaized.net/strmRCFm/userRCFm/playlist.m3u8'
-            },
-               {
-            'Name': 'Rock Fm 96.9',
-            'Description': '96.9 ROCK FM is one of the most historic stations in Athens since it has been broadcasting since 1989! On Rock FM you listen to your favorite rock and not only songs from all eras. From the beginning it continues steadily with the same name, which makes it one of the most historic stations in the city. The name of the station also defines its musical identity, but this does not create strict limits, hosting all the musical colors of this and every era.',
-            'Country': 'Gr',
-            'Category': 'Rock',
-            'Favorite':'0',
-            'Url': 'http://rockfmlive.mdc.akamaized.net/strmRCFm/userRCFm/playlist.m3u8'
-            },
-          {
-            'Name': 'Mad Radio 106.2',
-            'Description': 'How beautiful to have all the great foreign hits in one station! MAD radio broadcast on 106.2 MHz on June 6, 1996 in the summer of 2006 with Andreas M. Kouris at the helm. Well-known producers have switched to MAD radio and today excel at other frequencies. MAD radio is in its 11th year this year and continues its course with the same passion. It was the (former Ecstasy 106.2, South FM 106.1, Diva FM 106.1)! The station is owned by MAD TV Societe Anonyme, which was founded on January 9, 1995, and Solar Broadcasting and Entertainment Services Societe Anonyme. Their shareholder is PandaLaw Management Limited (100%) in which MAD Television Licensing Limited (90%) and Maria Kontomina (10%) participate. MAD radio could not be absent from the family of Live24.gr!',
-            'Country': 'Gr',
-            'Category': 'Pop',
-            'Favorite': '0',
-            'Url': 'http://mediaserver.mad.tv:80/stream'
-          },
-          {
-            'Name': 'Athens Dj 95.2',
-            'Description': '95.2 Athens DeeJay is a youth radio station founded in 2000! Every morning 7-10 starts dynamically with Michalis Tsousopoulos and Breakfast on FM! Athens DeeJay is very high in the preferences of pupils and students and plays mainly foreign mainstream! 95.2 Athens DeeJay enables its listeners to win unique gifts such as monthly rent, cash and invitations to go out. Athens DeeJay only plays Successes on Live24.gr',
-            'Country': 'Gr',
-            'Category': 'pop',
-            'Favorite': '0',
-            'Url': 'http://netradio.live24.gr:80/athensdeejay'
-          },
-          {
-            'Name': 'BBC Radio 1',
-            'Description': '',
-            'Country': 'GB',
-            'Category': 'BBC',
-            'Favorite': '0',
-            'Url': 'http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio1_mf_p'
-          },
-          {
-            'Name': 'BBC Radio 2',
-            'Description': '',
-            'Country': 'GB',
-            'Category': 'BBC',
-            'Favorite': '0',
-            'Url': 'http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio2_mf_p'
-          },
-          {
-            'Name': 'BBC Radio 3',
-            'Description': '',
-            'Country': 'GB',
-            'Category': 'BBC',
-            'Favorite': '0',
-            'Url': 'http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio3_mf_p'
-          },
-          {
-            'Name': 'BBC Radio 4',
-            'Description': '',
-            'Country': 'GB',
-            'Category': 'BBC',
-            'Favorite': '0',
-            'Url': 'http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio4fm_mf_p'
-          }
-            ]
-          
-}";
-
-      
+        public static WMPLib.WindowsMediaPlayer radioPlayer = new WMPLib.WindowsMediaPlayer();
+        static string chanels = $@"{File.ReadAllText(@"C:\Users\User\github\eng71\OOP\RadioAppStarterCode\RadioApp\JsonFiles\Chanels.json")}";
 
 
 
         //fields
-        private int _channel =1 ;
-        private bool _on = false;
+        private static int _channel = 1;
+        private static bool _on = false;
         private static List<Chanel> _channelsList = new List<Chanel>();
+        private static bool _isPlaying = false;
+        private static Chanel _isPlaynigNow;
+        private static bool _radioPlayerHasUrl = false;
+        private static string _apiResponse;
+
+
 
         // Properties
 
+        public static string ApiResponse
+        {
+            get { return _apiResponse; }
+            set { _apiResponse = value; }
+        }
         public int Channel
         {
             get { return _channel; }
-            set 
+            set
             {
                 if (_on)
                 {
@@ -106,14 +51,42 @@ namespace RadioApp
                 }
             }
         }
+        public static bool On
+        {
+            get { return _on; }
+            set
+            {
+                _on = value;
+
+            }
+        }
+
+        public static bool RadioPlayerHasUrl
+        {
+            get { return _radioPlayerHasUrl; }
+            set { _radioPlayerHasUrl = value; }
+        }
+
+        public static bool IsPlaying
+        {
+            get { return _isPlaying; }
+            set { _isPlaying = value; }
+        }
         public static List<Chanel> ChanelList
         {
             get { return _channelsList; }
             set { _channelsList = value; }
         }
 
+        public static Chanel IsPlayingNow
+        {
+            get { return _isPlaynigNow; }
+            set { _isPlaynigNow = value; }
+        }
 
         //Methods.
+
+        //Constructor Methods
         public Radio(int Channel)
         {
             _channel = Channel;
@@ -124,17 +97,12 @@ namespace RadioApp
         {
 
         }
-        
-      
-        
-        
-        
-       
-        
-        public void CreateChannels()
+
+        //This Method looks in the json file for items, for each item it creates a new chanel class and adds it the the channelList List
+        public async System.Threading.Tasks.Task CreateChannelsAsync()
         {
-            JObject rss = JObject.Parse(json);
-            foreach( var item in rss["channel"])
+            JObject radioChanels = JObject.Parse(chanels);
+            foreach (var item in radioChanels["channel"])
             {
                 var name = (string)item["Name"];
                 var url = (string)item["Url"];
@@ -142,34 +110,195 @@ namespace RadioApp
                 var country = (string)item["Country"];
                 var favorite = (string)item["Favorite"];
                 var category = (string)item["Category"];
-                ChanelList.Add(new Chanel(name, description, country, category, favorite, url));            
-            }
-           
-          
-        }
+                ChanelList.Add(new Chanel(name, description, country, category, favorite, url));
 
-        public string Play()
+            }
+            //making Http Request to Get Uk radio Stations in a JSON Format
+            var client = new HttpClient();
+            var request = new HttpRequestMessage
+            {
+                Method = HttpMethod.Get,
+                RequestUri = new Uri("https://30-000-radio-stations-and-music-charts.p.rapidapi.com/rapidapi?genre=ALL&search_keyword=All&country=Uk"),
+                Headers =
+                    {
+                        { "x-rapidapi-key", "2ce420e0c6msh463f1f0301ffc8cp186020jsn21ac736ef59a" },
+                        { "x-rapidapi-host", "30-000-radio-stations-and-music-charts.p.rapidapi.com" },
+                    },
+            };
+            using (var response = await client.SendAsync(request))
+            {
+                response.EnsureSuccessStatusCode();
+                var body = await response.Content.ReadAsStringAsync();
+                _apiResponse = body;
+
+            }
+            JObject radioChanelsFromApi = JObject.Parse(_apiResponse);
+            foreach (var item in radioChanelsFromApi["results"])
+            {
+                var name = (string)item["n"];
+                var url = (string)item["u"];
+                var description = (string)item["n"];
+                var country = (string)item["c"];
+                var favorite = "0";
+                var category = (string)item["n"];
+                ChanelList.Add(new Chanel(name, description, country, category, favorite, url));
+                if (ChanelList.Count >= 12)
+                {
+                    break;
+                }
+
+            }
+            //making Http Request to Get GR radio Stations in a JSON Format
+            request = new HttpRequestMessage
+            {
+                Method = HttpMethod.Get,
+                RequestUri = new Uri("https://30-000-radio-stations-and-music-charts.p.rapidapi.com/rapidapi?genre=ALL&search_keyword=All&country=Gr"),
+                Headers =
+                    {
+                        { "x-rapidapi-key", "2ce420e0c6msh463f1f0301ffc8cp186020jsn21ac736ef59a" },
+                        { "x-rapidapi-host", "30-000-radio-stations-and-music-charts.p.rapidapi.com" },
+                    },
+            };
+            using (var response = await client.SendAsync(request))
+            {
+                response.EnsureSuccessStatusCode();
+                var body = await response.Content.ReadAsStringAsync();
+                _apiResponse = body;
+
+            }
+            radioChanelsFromApi = JObject.Parse(_apiResponse);
+            foreach (var item in radioChanelsFromApi["results"])
+            {
+                var name = (string)item["n"];
+                var url = (string)item["u"];
+                var description = (string)item["n"];
+                var country = (string)item["c"];
+                var favorite = "0";
+                var category = (string)item["n"];
+                ChanelList.Add(new Chanel(name, description, country, category, favorite, url));
+               
+
+            }
+
+        }
+        //This Method Takes As a Parameter A string Url. It streams from that urll.
+        public static string Play(string url)
         {
             if (_on == false)
             {
                 return "Radio is off";
             }
             else
-                return $"Playing channel {_channel}";
-        }
+            {
+                foreach(var item in ChanelList)
+                {
+                    if (item.Url == url)
+                    {
+                        _isPlaynigNow = item;
 
-        public void TurnOff()
+                    }
+                }
+                radioPlayer.URL = url;
+                radioPlayer.settings.volume = 100;
+                radioPlayer.controls.play();
+                _isPlaying = true;
+                
+                _radioPlayerHasUrl = true;
+                return $"Playing channel {_channel}";
+
+            }
+        }
+        //This Method Turns Off The Radio
+        public static void TurnOff()
         {
             _on = false;
+            radioPlayer.controls.stop();
+            _isPlaying = false;
         }
 
-        public void TurnOn()
+        //This Method Turns On The Radio
+        public static void TurnOn()
         {
             _on = true;
+
         }
 
+        //This Method Adjusts the volume of the Radio
+        public static void SetPlayerVolume(int volume)
+        {
+            radioPlayer.settings.volume = volume;
+        }
 
+        //This Method Adds / Removes the Chanell To / From the Favorites
+        public static void AddToFavorites(string url)
+        {
+            foreach (var item in ChanelList)
+            {
+                if (item.Url == url)
+                {
+                    if (item.Favorite == "0")
+                    {
+                        item.Favorite = "1";
+                    }
+                    else item.Favorite = "0";
+                }
+            }
+        }
+
+        public static void PlayNext()
+        {
+            if (_on)
+            {
+                if (IsPlaying)
+                {
+                    for (int i = 0; i < ChanelList.Count; i++)
+                    {
+                        if (IsPlayingNow.Url == ChanelList[i].Url)
+                        {
+                            if (i == ChanelList.Count - 1) // if it is the last item in the list, play from the begining
+                            {
+                                Play(ChanelList[0].Url);
+                                break;
+                            }
+                            else
+                            {
+                                Play(ChanelList[i + 1].Url);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        public static void PlayPrevious()
+        {
+            if (_on)
+            {
+                if (IsPlaying)
+                {
+                    for (int i = 0; i < ChanelList.Count; i++)
+                    {
+                        if (IsPlayingNow.Url == ChanelList[i].Url)
+                        {
+                            if (i == 0)// if it is the first item in the list play the last one
+                            {
+                                Play(ChanelList[ChanelList.Count-1].Url);
+                                break;
+                            }
+                            else
+                            {
+                                Play(ChanelList[i - 1].Url);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+
+
+        }
+        // implement a class Radio that corresponds to the Class diagram 
+        //   and specification in the Radio_Mini_Project document
     }
-    // implement a class Radio that corresponds to the Class diagram 
-    //   and specification in the Radio_Mini_Project document
 }
