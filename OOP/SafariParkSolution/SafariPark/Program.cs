@@ -9,7 +9,7 @@ namespace SafariPark
         static void Main(string[] args)
         {
             Point3D hunterPosition = new Point3D(2, 0, 1);
-            Bow bow = new Bow("Wood",1);
+            Bow bow = new Bow("Wood",3);
             Camera pentax = new Camera("Lego");
             WaterPistol pistol = new WaterPistol("Nerf");
             LaserGun laserGun = new LaserGun("project3005");
@@ -37,58 +37,65 @@ namespace SafariPark
             //    Console.WriteLine(Iobj.Move(1)); 
             //}
 
-            //Point3D tigerPosition = new Point3D(4, 0, 4);
-            //Point3D hunterPosition = new Point3D(2, 0, 1);
+            Point3D tigerPosition = new Point3D(4, 0, 4);
+           // Point3D hunterPosition = new Point3D(2, 0, 1);
 
-            //Tiger tiger = new Tiger(Animals.animalType.aerial, 20, 40, tigerPosition, 3);
-            //Hunter hunter = new Hunter("Jino", "Biba", hunterPosition);
+            Tiger tiger = new Tiger(Animals.animalType.aerial, 20, 40, tigerPosition, 3);
+            Hunter hunter = new Hunter("Jino", "Biba", hunterPosition,bow);
 
-            //Point3D tigerNewPosition = new Point3D(3, 0, 1);
+            Point3D tigerNewPosition = new Point3D(3, 0, 1);
 
 
-            //string input = "";
-            //Console.WriteLine("Hi Tiger, There is a hunter nearby! \n");
-            //Console.WriteLine("Press any key to continue");
-            //Console.ReadKey();
-            //Console.WriteLine("");
-            //while (true)
-            //{
-            //    Console.WriteLine("Press 'i' to get the hunters info");
-            //    Console.WriteLine("Press 'a' to Attack the hunter");
-            //    Console.WriteLine("Press 'm' to Move closer to the hunter");
-            //    Console.WriteLine("Press 'e' to Run\n");
-            //    Console.WriteLine($"Your Position On Safari is X: {tiger.Position.X} Y: {tiger.Position.Y} Z: {tiger.Position.Z}\n");
+            string input = "";
+            Console.WriteLine("Hi Tiger, There is a hunter nearby! \n");
+            Console.WriteLine("Press any key to continue");
+            Console.ReadKey();
+            Console.WriteLine("");
+            while (true)
+            {
+                Console.WriteLine("Press 'i' to get the hunters info");
+                Console.WriteLine("Press 'a' to Attack the hunter");
+                Console.WriteLine("Press 'm' to Move closer to the hunter");
+                Console.WriteLine("Press 'e' to Run\n");
+                Console.WriteLine($"Your Position On Safari is X: {tiger.Position.X} Y: {tiger.Position.Y} Z: {tiger.Position.Z}\n");
 
-            //    input = Console.ReadLine();
-            //    switch (input)
-            //    {
-            //        case "i":
-            //            Console.WriteLine($"Name: {hunter.GetFullName()}, Health: {hunter.Health}," +
-            //                $" Position On Safari X: {hunter.Position.X} Y: {hunter.Position.Y}, Z: {hunter.Position.Z}\n");
-            //            break;
-            //        case "a":
-            //            tiger.Attack(hunter);
-            //            break;
-            //        case "m":
-            //            tiger.Move(tigerNewPosition);
-            //            Console.WriteLine("You moved Closer, Try Attacking! \n");
-            //            break;
-            //        case "e":
-            //            if (hunter.Health <= 0)
-            //            {
-            //                Console.WriteLine("Thank you for taking down the hunters. \nSee you next time!");
-            //            }
-            //            else
-            //            {
-            //                Console.WriteLine("You Chose to Run Away. Nice move :p");
-            //            }
+                input = Console.ReadLine();
+                switch (input)
+                {
+                    case "i":
+                        Console.WriteLine($"Name: {hunter.GetFullName()}, Health: {hunter.Health}," +
+                            $" Position On Safari X: {hunter.Position.X} Y: {hunter.Position.Y}, Z: {hunter.Position.Z}\n");
+                        break;
+                    case "a":
+                        tiger.Attack(hunter);
 
-            //            Environment.Exit(0);
+                        if (hunter.Health > 0)
+                        {
+                            Console.WriteLine($"{hunter.Shoot()}\n");
+                            tiger.Health -= bow.Damage;
+                            Console.WriteLine($"The Hunter Shot you with a Bow, and inflicted {bow.Damage} Damage\nYour Hp now Is {tiger.Health}\n");
+                        }
+                        break;
+                    case "m":
+                        tiger.Move(tigerNewPosition);
+                        Console.WriteLine("You moved Closer, Try Attacking! \n");
+                        break;
+                    case "e":
+                        if (hunter.Health <= 0)
+                        {
+                            Console.WriteLine("Thank you for taking down the hunters. \nSee you next time!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("You Chose to Run Away. Nice move :p");
+                        }
 
-            //            break;
-            //    }
+                        Environment.Exit(0);
 
-            //}
+                        break;
+                }
+
+            }
 
             /////
             // tiger.Attack(hunter);
